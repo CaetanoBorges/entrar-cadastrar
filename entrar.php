@@ -9,10 +9,15 @@
 </head>
 <style>
 *{margin:0;padding:0;}
-.corpo{width:700px;height:100vh;display:block;margin:0 auto;background:#eaeaea;position:relative;overflow-x:hidden;overflow-y:scroll}
+.corpo{width:700px;height:100vh;display:block;margin:0 auto;background:#eaeaea;position:relative;overflow:hidden;}
 .navegacao{position:absolute;top:0;left:0;padding:10px;}
 .navegacao ul{list-style:none;}
 .navegacao ul li{display:inline-block;padding:10px;}
+
+.duasDivs{width:200%;height:95%;margin-top:10%;display:block;overflow-y:hidden;overflow-x:scroll;}
+
+#entrar{width:50%;height:100%;display:block;float:left;background:red;}
+#inscrever{width:50%;height:100%;display:block;float:right;background:green;}
 </style>
 <body>
     <div class="corpo">
@@ -23,7 +28,12 @@
             </ul>
         </div>
         <div class="duasDivs">
-            
+            <div id="entrar">
+            trbyrtbyrty
+            </div>
+            <div id="inscrever">
+            rbtyrty
+            </div>
         </div>
     </div>
 </body>
