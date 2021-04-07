@@ -9,15 +9,15 @@
 </head>
 <style>
 *{margin:0;padding:0;scroll-behavior:smooth}
-.corpo{width:700px;height:100vh;display:block;margin:0 auto;background:#eaeaea;position:relative;overflow:hidden;}
-.navegacao{position:absolute;top:0;left:0;padding:10px;height:2%}
+.corpo{width:700px;height:100vh;display:block;margin:0 auto;position:relative;overflow:hidden;}
+.navegacao{position:absolute;top:0;left:0;padding:10px;border-bottom:1px solid #eaeaea;width:100%;}
 .navegacao ul{list-style:none;}
-.navegacao ul li{display:inline-block;padding:10px;}
+.navegacao ul li{display:inline-block;padding:10px;cursor:pointer;}
 
 .duasDivs{width:100%;height:100%;display:block;overflow-y:hidden;overflow-x:scroll;}
 
 #entrar{width:100%;height:100%;position:absolute;top:0;left:0;background:red;z-index: 0;}
-#inscrever{width:100%;height:100%;background:green;position:absolute;top:0;left:0;z-index: 0;}
+#inscrever{width:100%;height:100%;background:green;position:absolute;top:0;left:0;z-index: 0;border-left:1px solid #eaeaea;}
 </style>
 <body>
     <div class="corpo">
@@ -53,10 +53,10 @@ window.addEventListener("hashchange", function(e){
     
     if(location.hash == "#entrar"){
         console.log(1);
-        routerPrincipal([1,-1])
+        routerPrincipal(["block","none"])
     }else{
         console.log(2);
-        routerPrincipal([-1,1])
+        routerPrincipal(["none","block"])
     }
 
 })
@@ -64,9 +64,9 @@ window.addEventListener("hashchange", function(e){
 _paraHash("#entrar");
 
 // FUNCAO ROUTER
-function routerPrincipal(a) {
-   _("#entrar").style.Zindex = a[0];
-   _("#inscrever").style.Zindex = a[1];
+function routerPrincipal(a,b) {
+   _("#entrar").style.display = a[0];
+   _("#inscrever").style.display = a[1];
 console.log(a);
 
 }
