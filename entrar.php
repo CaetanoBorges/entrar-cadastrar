@@ -8,38 +8,67 @@
     <link rel="stylesheet" href="entrar.css">
 </head>
 <style>
-*{margin:0;padding:0;}
+*{margin:0;padding:0;scroll-behavior:smooth}
 .corpo{width:700px;height:100vh;display:block;margin:0 auto;background:#eaeaea;position:relative;overflow:hidden;}
 .navegacao{position:absolute;top:0;left:0;padding:10px;height:2%}
 .navegacao ul{list-style:none;}
 .navegacao ul li{display:inline-block;padding:10px;}
 
-.duasDivs{width:200%;height:95%;margin-top:10%;display:block;overflow-y:hidden;overflow-x:scroll;position: absolute;top:1vh;left:0;}
+.duasDivs{width:100%;height:100%;display:block;overflow-y:hidden;overflow-x:scroll;}
 
-#entrar{width:50%;height:100%;display:block;float:left;background:red;}
-#inscrever{width:50%;height:100%;display:block;float:right;background:green;}
+#entrar{width:100%;height:100%;position:absolute;top:0;left:0;background:red;z-index: 0;}
+#inscrever{width:100%;height:100%;background:green;position:absolute;top:0;left:0;z-index: 0;}
 </style>
 <body>
     <div class="corpo">
         <div class="navegacao">
             <ul>
-                <li>ENTRAR</li>
-                <li>INSCREVER-SE</li>
+                <li onclick='_paraHash("#entrar")'>ENTRAR</li>
+                <li onclick='_paraHash("#inscrever")'>INSCREVER-SE</li>
             </ul>
         </div>
-        <div class="duasDivs">
-            <div id="entrar">
-            trbyrtbyrty
+        <div style="width:70%;display:block;margin:10vh auto;height:50%;position:relative">
+            <div class="duasDivs">
+                <div id="inscrever">
+                rbtyrty
+                </div>
+                <div id="entrar">
+                trbyrtbyrty
+                </div>
             </div>
-            <div id="inscrever">
-            rbtyrty
-            </div>
-        </div>
+        </div>  
     </div>
 </body>
 <script>
-function ___(elemento){
+
+function _(elemento){
     return document.querySelector(elemento);
+}
+
+function _paraHash(hash){
+    location.hash = hash;
+}
+
+window.addEventListener("hashchange", function(e){
+    
+    if(location.hash == "#entrar"){
+        console.log(1);
+        routerPrincipal([1,-1])
+    }else{
+        console.log(2);
+        routerPrincipal([-1,1])
+    }
+
+})
+
+_paraHash("#entrar");
+
+// FUNCAO ROUTER
+function routerPrincipal(a) {
+   _("#entrar").style.Zindex = a[0];
+   _("#inscrever").style.Zindex = a[1];
+console.log(a);
+
 }
 </script>
 </html>
