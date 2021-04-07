@@ -10,14 +10,22 @@
 <style>
 *{margin:0;padding:0;scroll-behavior:smooth}
 .corpo{width:700px;height:100vh;display:block;margin:0 auto;position:relative;overflow:hidden;}
+
+/* MENU */
 .navegacao{position:absolute;top:0;left:0;padding:10px;border-bottom:1px solid #eaeaea;width:100%;}
 .navegacao ul{list-style:none;}
 .navegacao ul li{display:inline-block;padding:10px;cursor:pointer;}
 
-.duasDivs{width:100%;height:100%;display:block;overflow-y:hidden;overflow-x:scroll;}
+/* TELAS DE LOGIN E CADASTRO */
+.duasDivs{width:100%;height:100%;display:block;}
+#entrar{width:100%;height:100%;background:red;align-items: center;display: flex;justify-content: center;}
+#inscrever{width:100%;height:100%;background:green;display:none;}
 
-#entrar{width:100%;height:100%;position:absolute;top:0;left:0;background:red;z-index: 0;}
-#inscrever{width:100%;height:100%;background:green;position:absolute;top:0;left:0;z-index: 0;border-left:1px solid #eaeaea;}
+/* TELA ENTRAR */
+.input-entrar{width:200px;height:30px;display:block;margin:2px auto;box-shadow: none;border: none;text-align: center;clear: both;}
+.input-entrar:active{border: none;border-radius: 0;outline: none;}
+
+.esqueci-pass{margin-top: 5px;}
 </style>
 <body>
     <div class="corpo">
@@ -33,7 +41,12 @@
                 rbtyrty
                 </div>
                 <div id="entrar">
-                trbyrtbyrty
+                    <div>
+                        <input type="email" class="input-entrar">
+                        <input type="password" class="input-entrar">
+                        <button class="input-entrar">Entrar</button>
+                        <p class="esqueci-pass">Esqueci a palavra passe!<br>Renovar</p>
+                    </div>
                 </div>
             </div>
         </div>  
@@ -53,7 +66,7 @@ window.addEventListener("hashchange", function(e){
     
     if(location.hash == "#entrar"){
         console.log(1);
-        routerPrincipal(["block","none"])
+        routerPrincipal(["flex","none"])
     }else{
         console.log(2);
         routerPrincipal(["none","block"])
