@@ -41,11 +41,17 @@
                 rbtyrty
                 </div>
                 <div id="entrar">
-                    <div>
+                    <div id="entrar-principal">
                         <input type="email" class="input-entrar">
                         <input type="password" class="input-entrar">
                         <button class="input-entrar">Entrar</button>
                         <p class="esqueci-pass">Esqueci a palavra passe!<br>Renovar</p>
+                    </div>
+                    <div id="esqueci-pass">
+
+                    </div>
+                    <div id="">
+
                     </div>
                 </div>
             </div>
@@ -76,8 +82,15 @@ window.addEventListener("hashchange", function(e){
 
 _paraHash("#entrar");
 
-// FUNCAO ROUTER
-function routerPrincipal(a,b) {
+// FUNCAO ROUTER PRINCIPAL
+function routerPrincipal(a) {
+   _("#entrar").style.display = a[0];
+   _("#inscrever").style.display = a[1];
+console.log(a);
+
+}
+// FUNCAO ROUTER ENTRAR
+function routerEntrar(a) {
    _("#entrar").style.display = a[0];
    _("#inscrever").style.display = a[1];
 console.log(a);
