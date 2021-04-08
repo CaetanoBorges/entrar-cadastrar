@@ -23,7 +23,7 @@
 
 /* TELA ENTRAR */
 .input-entrar{width:200px;height:30px;display:block;margin:2px auto;box-shadow: none;border: none;text-align: center;clear: both;}
-.input-entrar:active{border: none;border-radius: 0;outline: none;}
+.input-entrar:focus{border: none;border-radius: 0;outline: none;box-shadow:none;}
 
 .esqueci-pass{margin-top: 5px;}
 </style>
