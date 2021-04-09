@@ -26,6 +26,12 @@
 .input-entrar:focus{border: none;border-radius: 0;outline: none;box-shadow:none;}
 
 .esqueci-pass{margin-top: 5px;}
+
+#esqueci-pass{display: none;}
+#obter-codigo{display: none;}
+#tenho-codigo{display: none;}
+span{cursor: pointer;font-weight: bold;}
+button{cursor: pointer;}
 </style>
 <body>
     <div class="corpo">
@@ -45,13 +51,22 @@
                         <input type="email" class="input-entrar">
                         <input type="password" class="input-entrar">
                         <button class="input-entrar">Entrar</button>
-                        <p class="esqueci-pass">Esqueci a palavra passe!<br>Renovar</p>
+                        <p class="esqueci-pass">Esqueci a palavra passe!<br> <span onclick='_paraHash("#esqueci-pass")'>Renovar</span></p>
                     </div>
                     <div id="esqueci-pass">
-
+                        <button class="input-entrar" onclick='_paraHash("#obter-codigo")'>Obter código para renovar a palavra passe</button>
+                        <button class="input-entrar" onclick='_paraHash("#tenho-codigo")'>Já tenho o código, quero renovar a palavra passe</button>
                     </div>
-                    <div id="">
-
+                    <div id="obter-codigo">
+                        <p class="esqueci-sms">Insira o seu e-mail e irá receber um código <br> que ajudará a renovar a palavra passe.</p>
+                        <input type="email" class="input-entrar">
+                        <button class="input-entrar">Entrar</button>
+                    </div>
+                    <div id="tenho-codigo">
+                        <p class="esqueci-sms">Insira o e-mail e código que recebeu no e-mail<br>Para renovar a palavra passe.</p>
+                        <input type="email" class="input-entrar">
+                        <input type="text" class="input-entrar">
+                        <button class="input-entrar">Renovar Password</button>
                     </div>
                 </div>
             </div>
@@ -71,11 +86,17 @@ function _paraHash(hash){
 window.addEventListener("hashchange", function(e){
     
     if(location.hash == "#entrar"){
-        console.log(1);
         routerPrincipal(["flex","none"])
-    }else{
-        console.log(2);
-        routerPrincipal(["none","block"])
+    }else if(location.hash == "#inscrever"){
+        routerPrincipal(["none","flex"])
+    }
+    
+    else if(location.hash == "#esqueci-pass"){
+        routerEntrar(["none","block","none","none"])
+    }else if(location.hash == "#obter-codigo"){
+        routerEntrar(["none","none","block","none"])
+    }else if(location.hash == "#tenho-codigo"){
+        routerEntrar(["none","none","none","block"])
     }
 
 })
@@ -84,17 +105,26 @@ _paraHash("#entrar");
 
 // FUNCAO ROUTER PRINCIPAL
 function routerPrincipal(a) {
+    if(a[0] == "flex"){
+        _("#entrar").style.display = a[0];
+        _("#entrar-principal").style.display = "block";
+
+        
+        _("#inscrever").style.display = a[1];
+        _("#esqueci-pass").style.display = a[1];
+        _("#obter-codigo").style.display = a[1];
+        _("#tenho-codigo").style.display = a[1];
+        return
+    }
    _("#entrar").style.display = a[0];
    _("#inscrever").style.display = a[1];
-console.log(a);
-
 }
 // FUNCAO ROUTER ENTRAR
 function routerEntrar(a) {
-   _("#entrar").style.display = a[0];
-   _("#inscrever").style.display = a[1];
-console.log(a);
-
+   _("#entrar-principal").style.display = a[0];
+   _("#esqueci-pass").style.display = a[1];
+   _("#obter-codigo").style.display = a[2];
+   _("#tenho-codigo").style.display = a[3];
 }
 </script>
 </html>
