@@ -54,6 +54,9 @@ button{cursor: pointer;}
 .outline-none:focus{outline: none;}
 .genero{width:216px;height: 34px;text-align:center;margin-top:5px;}
 .mes{width:100px;height: 34px;text-align:center}
+
+#inscrever h2{text-align: center;margin-bottom: 10px;}
+#cadastrar-termos p{margin: 5px 20px;}
 </style>
 <body>
     <div class="corpo">
@@ -69,11 +72,15 @@ button{cursor: pointer;}
                 <div id="inscrever">
                     
                     <div id="cadastrar-nome">
+                        <h2>Criar uma conta</h2>
+                        <p>Introduza o seu nome</p>
                         <input type="text" placeholder="Nome próprio" class="input-entrar">
                         <input type="text" placeholder="Apelido" class="input-entrar">
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-nascimento")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-nascimento">
+                        <h2>Informações básicas</h2>
+                        <p>Introduzir a sua data de nascimento e o<br>seu género</p>
                         <input type="number" placeholder="Dia" class="dia-mes">
                         <select name="" id="" class="mes outline-none">
                             <option value="0">Mês</option>
@@ -100,19 +107,32 @@ button{cursor: pointer;}
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-email")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-email">
+                        <h2>Deve adicionar<br>o seu email à conta!</h2>
                         <input type="email" placeholder="Email" class="input-entrar">
+                        <p>Essa ação não deixa o teu email público.<br>Servirá para fins de autenticação<br>e renovação da palavra-passe caso<br>se esqueça.
+                        </p>
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-password")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-password">
-                        <input type="text" placeholder="Palavra passe" class="input-entrar">
+                        <h2>Criar uma palavra-passe<br>forte</h2>
+                        <p>Crie uma plavra passe forte com uma mistura de letras, números e símbolos</p>
+                        <input type="text" placeholder="Palavra-passe" class="input-entrar">
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-telefone")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-telefone">
+                        <h2>Pretende adicionar<br>o número de telefone à conta?</h2>
                         <input type="text" placeholder="Número de telefone" class="input-entrar">
+                        <p>Essa ação não torna o teu número público.</p>
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-termos")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-termos">
-                        Termos
+                        <h2>Leia atentamente</h2>
+                        <p class="termo">1- Esta conta te dá acesso a todos serviços da nossa plataforma, sejam os de distribuição livre,
+                        sejam os que precisa de um pacote de subscrição. Os serviços da plataforma são mobile, web, e desktop.</p>
+                        <p class="termo">2- Presamos pela segurança e privacidade. Os teus dados são protegidos por lei, ética e moral, são apenas usados para 
+                        o bom funcionamento da plataforma.</p>
+                        <p class="termo">3- Poderá editar as informações de conta sempre que precisar.</p>
+                        <p class="termo">4- Poderá encerrar a sua conta nas definições de conta se desejar.</p>
                         <button class="acao-cadastrar" onclick=''>Concluir</button>
                     </div>
                 </div>
@@ -123,19 +143,19 @@ button{cursor: pointer;}
                         <input type="email" class="input-entrar">
                         <input type="password" class="input-entrar">
                         <button class="input-entrar">Entrar</button>
-                        <p class="esqueci-pass">Esqueci a palavra passe!<br> <span onclick='_paraHash("#esqueci-pass")'>Renovar</span></p>
+                        <p class="esqueci-pass">Esqueci a palavra-passe!<br> <span onclick='_paraHash("#esqueci-pass")'>Renovar</span></p>
                     </div>
                     <div id="esqueci-pass">
-                        <button class="renovar" onclick='_paraHash("#obter-codigo")'>Obter código para renovar a palavra passe</button>
-                        <button class="renovar" onclick='_paraHash("#tenho-codigo")'>Já tenho o código, quero renovar a palavra passe</button>
+                        <button class="renovar" onclick='_paraHash("#obter-codigo")'>Obter código para renovar a palavra-passe</button>
+                        <button class="renovar" onclick='_paraHash("#tenho-codigo")'>Já tenho o código, quero renovar a palavra-passe</button>
                     </div>
                     <div id="obter-codigo">
-                        <p class="esqueci-sms">Insira o seu e-mail e irá receber um código <br> que ajudará a renovar a palavra passe.</p>
+                        <p class="esqueci-sms">Insira o seu e-mail e irá receber um código <br> que ajudará a renovar a palavra-passe.</p>
                         <input type="email" class="input-entrar" placeholder="Email">
                         <button class="input-entrar">Receber código</button>
                     </div>
                     <div id="tenho-codigo">
-                        <p class="esqueci-sms">Insira o e-mail e código que recebeu no e-mail<br>Para renovar a palavra passe.</p>
+                        <p class="esqueci-sms">Insira o e-mail e código que recebeu no e-mail<br>Para renovar a palavra-passe.</p>
                         <input type="email" class="input-entrar" placeholder="Email">
                         <input type="text" class="input-entrar" placeholder="Código recebido">
                         <button class="input-entrar">Renovar Password</button>
