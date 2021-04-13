@@ -19,7 +19,7 @@
 /* TELAS DE LOGIN E CADASTRO */
 .duasDivs{width:100%;height:100%;display:block;}
 #entrar{width:100%;height:100%;background:red;align-items: center;display: flex;justify-content: center;}
-#inscrever{width:100%;height:100%;background:green;align-items: center;justify-content: center;display:none;}
+#inscrever{width:100%;height:100%;align-items: center;justify-content: center;display:none;}
 
 /* TELA ENTRAR */
 .input-entrar{width:200px;height:30px;display:block;margin:2px auto;box-shadow: none;border: none;text-align: center;clear: both;}
@@ -55,6 +55,7 @@ button{cursor: pointer;}
 .genero{width:216px;height: 34px;text-align:center;margin-top:5px;}
 .mes{width:100px;height: 34px;text-align:center}
 
+#inscrever img{width:20%;position:absolute;top:-14px; left:40%; margin: 10px auto;}
 #inscrever h2{text-align: center;margin-bottom: 10px;}
 #cadastrar-termos p{margin: 5px 20px;}
 </style>
@@ -72,6 +73,7 @@ button{cursor: pointer;}
                 <div id="inscrever">
                     
                     <div id="cadastrar-nome">
+                        <img src="logo.png">
                         <h2>Criar uma conta</h2>
                         <p>Introduza o seu nome</p>
                         <input type="text" placeholder="Nome próprio" class="input-entrar">
@@ -79,6 +81,7 @@ button{cursor: pointer;}
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-nascimento")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-nascimento">
+                        <img src="logo.png">
                         <h2>Informações básicas</h2>
                         <p>Introduzir a sua data de nascimento e o<br>seu género</p>
                         <input type="number" placeholder="Dia" class="dia-mes">
@@ -107,6 +110,7 @@ button{cursor: pointer;}
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-email")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-email">
+                        <img src="logo.png">
                         <h2>Deve adicionar<br>o seu email à conta!</h2>
                         <input type="email" placeholder="Email" class="input-entrar">
                         <p>Essa ação não deixa o teu email público.<br>Servirá para fins de autenticação<br>e renovação da palavra-passe caso<br>se esqueça.
@@ -114,18 +118,21 @@ button{cursor: pointer;}
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-password")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-password">
+                        <img src="logo.png">
                         <h2>Criar uma palavra-passe<br>forte</h2>
                         <p>Crie uma plavra passe forte com uma mistura de letras, números e símbolos</p>
                         <input type="text" placeholder="Palavra-passe" class="input-entrar">
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-telefone")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-telefone">
+                        <img src="logo.png">
                         <h2>Pretende adicionar<br>o número de telefone à conta?</h2>
                         <input type="text" placeholder="Número de telefone" class="input-entrar">
                         <p>Essa ação não torna o teu número público.</p>
                         <button class="acao-cadastrar" onclick='_paraHash("#cadastrar-termos")'>Seguinte</button>
                     </div>
                     <div id="cadastrar-termos">
+                        <img src="logo.png">
                         <h2>Leia atentamente</h2>
                         <p class="termo">1- Esta conta te dá acesso a todos serviços da nossa plataforma, sejam os de distribuição livre,
                         sejam os que precisa de um pacote de subscrição. Os serviços da plataforma são mobile, web, e desktop.</p>
