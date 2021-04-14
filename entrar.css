@@ -208,7 +208,8 @@ button:focus {
 .div-centro {
     display: block;
     width: 220px;
-    margin: 0 auto
+    margin: 0 auto;
+    text-align: justify;
 }
 
 .genero {

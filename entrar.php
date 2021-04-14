@@ -19,6 +19,13 @@
             </ul>
         </div>
         <div style="width:70%;display:block;margin:10vh auto;height:50%;position:relative">
+            <style>
+                .load{position: absolute; top: 1px; left:1px; width:100%; height: 100%;background: #fff;display: none;}
+                .load img {width: 30%; position: absolute; top: 40%; left:35%;}
+            </style>
+            <div class="load">
+                <img src="logo.gif" alt="">
+            </div>
             <div class="duasDivs">
                 <!-- -->
                 <div id="inscrever">
@@ -77,12 +84,17 @@
                     <div id="cadastrar-email">
                         <img src="logo.png">
                         <h2>Deve adicionar<br>o seu email à conta!</h2>
-                        <input type="email" placeholder="Email" class="input-entrar bckgrnd-input">
+                        <input type="email" placeholder="Email" class="input-entrar bckgrnd-input" id="iEmail">
                         <div class="div-centro">
-                            <p>Essa ação não deixa o teu email público.<br>Servirá para fins de autenticação<br>e renovação da palavra-passe caso<br>se esqueça.
+                            <p>Essa ação não deixa o teu email público. Servirá para fins de autenticação e renovação da palavra-passe caso se esqueça.
                             </p>
                         </div>
-                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_paraHash("#cadastrar-password")'>Seguinte</button>
+                        <div class="div-centro">
+                            <div class="erro">
+                                <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
+                            </div>   
+                        </div>
+                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_iEmailJa()'>Seguinte</button>
                     </div>
                     <div id="cadastrar-password">
                         <img src="logo.png">
@@ -91,17 +103,22 @@
                             <p>Crie uma plavra passe forte com uma mistura de letras, números e símbolos</p>
                         </div>
                         
-                        <input type="text" placeholder="Palavra-passe" class="input-entrar bckgrnd-input">
-                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_paraHash("#cadastrar-telefone")'>Seguinte</button>
+                        <input type="password" placeholder="Palavra-passe" class="input-entrar bckgrnd-input" id="iPass">
+                        <div class="div-centro">
+                            <div class="erro">
+                                <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
+                            </div>   
+                        </div>
+                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_iPassJa()'>Seguinte</button>
                     </div>
                     <div id="cadastrar-telefone">
                         <img src="logo.png">
                         <h2>Pretende adicionar<br>o número de telefone à conta?</h2>
-                        <input type="text" placeholder="Número de telefone" class="input-entrar bckgrnd-input">
+                        <input type="number" placeholder="Número de telefone" class="input-entrar bckgrnd-input" id="iTelefone">
                         <div class="div-centro">
-                            <p>Essa ação não torna o teu número público. E pode não adicionar.</p>
+                            <p>Essa ação não torna o teu número público. E não é obrigatória.</p>
                         </div>
-                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_paraHash("#cadastrar-termos")'>Seguinte</button>
+                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_iTelefoneJa()'>Seguinte</button>
                     </div>
                     <div id="cadastrar-termos">
                         <img src="logo.png">
@@ -112,7 +129,7 @@
                         o bom funcionamento da plataforma.</p>
                         <p class="termo">3- Poderá editar as informações de conta sempre que precisar.</p>
                         <p class="termo">4- Poderá encerrar a sua conta nas definições de conta se desejar.</p>
-                        <button class="acao-cadastrar bckgrnd-button-c" onclick=''>Concluir</button>
+                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_iTermosJa()'>Concluir</button>
                     </div>
                 </div>
                 <!-- -->
@@ -160,118 +177,12 @@
         </div>  
     </div>
 </body>
+<script src="funcoesGenericas.js"></script>
 <script src="router.js"></script>
 <script>
 var cadastrar = {};
-function _isset(value){
-    if(value.length > 0){
-        return true;
-    }
-    return false;
-}
 
-function _erroInput(el, sms = false, opt = false){
-    _(el+" .sms-erro").textContent = " ";
-    _(el+" .sms-erro").textContent = sms;
-    if(opt){
-        _(el+" .erro").style.display = "block";
-    }else{
-        _(el+" .erro").style.display = "none";
-    }
-    
-}
-
-function _corBorda(el, cor){
-        _(el).style.border = "1px inset "+cor;
-}
-
-function _iNomeJa(){
-    var nome = _("#inome").value;
-    var apelido = _("#iapelido").value;
-
-    if(_isset(nome)){
-        _corBorda("#inome", "blue");
-    }else{
-        _erroInput("#cadastrar-nome", "O nome é necessário!", true);
-        _corBorda("#inome", "red");
-    }
-    if(_isset(apelido)){
-        _corBorda("#iapelido", "blue");
-    }else{
-        _erroInput("#cadastrar-nome", "O apelido também é necessário!", true);
-        _corBorda("#iapelido", "red");
-    }
-    
-    
-    if(!_isset(nome) && !_isset(apelido)){
-        _erroInput("#cadastrar-nome", "Nome e o apelido são necessários!", true);
-        _corBorda("#iapelido", "red");
-        _corBorda("#inome", "red");
-    }
-    if(_isset(nome) && _isset(apelido)){
-        cadastrar.nome = nome;
-        cadastrar.apelido = apelido;
-        _erroInput("#cadastrar-nome");
-        _corBorda("#inome", "blue");
-        _corBorda("#iapelido", "blue");
-        _paraHash("#cadastrar-nascimento");
-    }
-    
-}
-
-function _iNascimentoJa(){
-    var dia = _("#iDia").value;
-    var mes = _("#iMes").value;
-    var ano = _("#iAno").value;
-    var genero = _("#iGenero").value;
-
-    if(_isset(dia) && (dia != 0)){
-        _corBorda("#iDia", "blue");
-    }else{
-        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
-        _corBorda("#iDia", "red");
-    }
-    if(_isset(mes) && (mes != 0)){
-        _corBorda("#iMes", "blue");
-    }else{
-        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
-        _corBorda("#iMes", "red");
-    }
-    if(_isset(ano) && (ano != 0)){
-        _corBorda("#iAno", "blue");
-    }else{
-        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
-        _corBorda("#iAno", "red");
-    }
-    if(_isset(genero) && (genero != 0)){
-        _corBorda("#iGenero", "blue");
-    }else{
-        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
-        _corBorda("#iGenero", "red");
-    }
-    
-    
-    if(!_isset(dia) && (!_isset(mes)) && !_isset(ano) && !_isset(genero)){
-        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
-        _corBorda("#iDia", "red");
-        _corBorda("#iAno", "red");
-        _corBorda("#iMes", "red");
-        _corBorda("#iGenero", "red");
-    }
-    if((_isset(dia) && (dia != 0)) && (_isset(mes) && (mes != 0)) && (_isset(ano) && (ano != 0)) && (_isset(genero) && (genero != 0))){
-        cadastrar.dia = dia;
-        cadastrar.mes = mes;
-        cadastrar.ano = ano;
-        cadastrar.genero = genero;
-        _erroInput("#cadastrar-nascimento");
-        _corBorda("#iDia", "blue");
-        _corBorda("#iMes", "blue");
-        _corBorda("#iAno", "blue");
-        _corBorda("#iGenero", "blue");
-
-        _paraHash("#cadastrar-email");
-    }
-    
-}
 </script>
+<script src="preenchimentoFormInscrever.js"></script>
+
 </html>

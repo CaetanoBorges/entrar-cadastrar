@@ -1,7 +1,3 @@
-function _(elemento) {
-    return document.querySelector(elemento);
-}
-
 function _paraHash(hash) {
     location.hash = hash;
 }
