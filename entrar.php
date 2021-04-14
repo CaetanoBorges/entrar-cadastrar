@@ -35,7 +35,6 @@
                             <div class="erro">
                                 <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
                             </div>
-                            
                         </div>
                         <button class="acao-cadastrar bckgrnd-button-c" onclick='_iNomeJa()'>Seguinte</button>
                     </div>
@@ -44,8 +43,8 @@
                         <h2>Informações básicas</h2>
                         <div class="div-centro">
                             <p>Introduzir a sua data<br>de nascimento e oseu género</p>
-                            <input type="number" placeholder="Dia" class="dia-mes">
-                            <select name="" id="" class="mes outline-none">
+                            <input type="number" placeholder="Dia" class="dia-mes" id="iDia">
+                            <select name="" class="mes outline-none" id="iMes">
                                 <option value="0">Mês</option>
                                 <option value="1">Janeiro</option>
                                 <option value="2">Fevereiro</option>
@@ -60,15 +59,20 @@
                                 <option value="11">Novembro</option>
                                 <option value="12">Dezembro</option>
                             </select>
-                            <input type="number" placeholder="Ano" class="dia-mes">
+                            <input type="number" placeholder="Ano" class="dia-mes" id="iAno">
                             <br>
-                            <select name="" id="" class="genero outline-none">
-                                <option value="g">Género</option>
+                            <select name="" class="genero outline-none" id="iGenero">
+                                <option value="0">Género</option>
                                 <option value="m">Masculino</option>
                                 <option value="f">Feminino</option>
                             </select>
                         </div>
-                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_paraHash("#cadastrar-email")'>Seguinte</button>
+                        <div class="div-centro">
+                            <div class="erro">
+                                <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
+                            </div>   
+                        </div>
+                        <button class="acao-cadastrar bckgrnd-button-c" onclick='_iNascimentoJa()'>Seguinte</button>
                     </div>
                     <div id="cadastrar-email">
                         <img src="logo.png">
@@ -177,37 +181,95 @@ function _erroInput(el, sms = false, opt = false){
     
 }
 
+function _corBorda(el, cor){
+        _(el).style.border = "1px inset "+cor;
+}
+
 function _iNomeJa(){
     var nome = _("#inome").value;
     var apelido = _("#iapelido").value;
 
     if(_isset(nome)){
-        _("#inome").style.border = "1px inset blue";
+        _corBorda("#inome", "blue");
     }else{
         _erroInput("#cadastrar-nome", "O nome é necessário!", true);
-        _("#inome").style.border = "1px inset red";
+        _corBorda("#inome", "red");
     }
     if(_isset(apelido)){
-        _("#iapelido").style.border = "1px inset blue";
+        _corBorda("#iapelido", "blue");
     }else{
         _erroInput("#cadastrar-nome", "O apelido também é necessário!", true);
-        _("#iapelido").style.border = "1px inset red";
+        _corBorda("#iapelido", "red");
     }
     
     
     if(!_isset(nome) && !_isset(apelido)){
-        
         _erroInput("#cadastrar-nome", "Nome e o apelido são necessários!", true);
-        _("#inome").style.border = "1px inset red";
-        _("#iapelido").style.border = "1px inset red";
+        _corBorda("#iapelido", "red");
+        _corBorda("#inome", "red");
     }
     if(_isset(nome) && _isset(apelido)){
         cadastrar.nome = nome;
         cadastrar.apelido = apelido;
         _erroInput("#cadastrar-nome");
-        _("#inome").style.border = "1px solid blue";
-        _("#iapelido").style.border = "1px solid blue";
+        _corBorda("#inome", "blue");
+        _corBorda("#iapelido", "blue");
         _paraHash("#cadastrar-nascimento");
+    }
+    
+}
+
+function _iNascimentoJa(){
+    var dia = _("#iDia").value;
+    var mes = _("#iMes").value;
+    var ano = _("#iAno").value;
+    var genero = _("#iGenero").value;
+
+    if(_isset(dia) && (dia != 0)){
+        _corBorda("#iDia", "blue");
+    }else{
+        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
+        _corBorda("#iDia", "red");
+    }
+    if(_isset(mes) && (mes != 0)){
+        _corBorda("#iMes", "blue");
+    }else{
+        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
+        _corBorda("#iMes", "red");
+    }
+    if(_isset(ano) && (ano != 0)){
+        _corBorda("#iAno", "blue");
+    }else{
+        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
+        _corBorda("#iAno", "red");
+    }
+    if(_isset(genero) && (genero != 0)){
+        _corBorda("#iGenero", "blue");
+    }else{
+        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
+        _corBorda("#iGenero", "red");
+    }
+    
+    
+    if(!_isset(dia) && (!_isset(mes)) && !_isset(ano) && !_isset(genero)){
+        _erroInput("#cadastrar-nascimento", "Adicione os dados corretamente.", true);
+        _corBorda("#iDia", "red");
+        _corBorda("#iAno", "red");
+        _corBorda("#iMes", "red");
+        _corBorda("#iGenero", "red");
+    }
+    if((_isset(dia) && (dia != 0)) && (_isset(mes) && (mes != 0)) && (_isset(ano) && (ano != 0)) && (_isset(genero) && (genero != 0))){
+        cadastrar.dia = dia;
+        cadastrar.mes = mes;
+        cadastrar.ano = ano;
+        cadastrar.genero = genero;
+        _erroInput("#cadastrar-nascimento");
+        _corBorda("#iDia", "blue");
+        _corBorda("#iMes", "blue");
+        _corBorda("#iAno", "blue");
+        _corBorda("#iGenero", "blue");
+
+        _paraHash("#cadastrar-email");
     }
     
 }
