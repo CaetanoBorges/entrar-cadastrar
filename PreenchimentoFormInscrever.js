@@ -108,7 +108,7 @@ function _iPassJa() {
         _corBorda("#iPass", "blue");
         _erroInput("#cadastrar-password");
         _paraHash("#cadastrar-telefone");
-        cadastrar.password = pass;
+        cadastrar.palavra_passe = pass;
     } else {
         _erroInput("#cadastrar-password", "A palavra-passe é necessária e deve ter no mínimo 6 caractéres", true);
         _corBorda("#iPass", "red");
