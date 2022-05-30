@@ -185,48 +185,19 @@
 <script src="funcoesGenericas.js"></script>
 <script src="router.js"></script>
 <script src="jquery.js" ></script>
+<?php
+$servidor = "http://127.0.0.1";
+$urlDaRequisicao = $_SERVER['REQUEST_URI'];
+$protocoloHttp = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://";
+//echo $urlDaRequisicao;
+
+
+?>
 <script>
 var cadastrar = {};
-function _iTermosJa(json){
-    _loader(1);
-    $.post('http://127.0.0.1/binga/conta-api/cadastrar.php', {
-        json: JSON.stringify(json)
-  })
-  .done(function (response) {
-    var obj = JSON.parse(response);
-    if(obj.ok){
+const servidor = "<?php echo $servidor; ?>";
+const variavel = "<?php echo hash("sha512","codigo") ?>"
 
-    }
-  })
-  .always(function (error) {
-    console.log(error);
-    _loader();
-  });
-}
-
-function _entra(json){
-    _loader(1);
-    $.post('http://127.0.0.1/binga/conta-api/entrar.php', {
-        json: JSON.stringify({email: $("#email-entrar").val(), palavra_passe: $("#pass-entrar").val()})
-  })
-  .done(function (response) {
-    var obj = JSON.parse(response);
-    if(obj.ok){
-
-    }else{
-        _corBorda(".erro", "red");
-        _erroInput(".erro-entrar", obj.payload, 1);
-        setInterval(() => {
-            _erroInput(".erro-entrar", obj.payload, 0);
-        }, 5000);
-
-    }
-  })
-  .always(function (error) {
-    console.log(error);
-    _loader();
-  });
-}
 </script>
 <script src="preenchimentoFormInscrever.js"></script>
 

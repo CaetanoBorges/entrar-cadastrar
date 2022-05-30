@@ -123,5 +123,46 @@ function _iTelefoneJa() {
 
 
 function _iTermosJa() {
-    alert("Concluir")
+    _loader(1);
+
+    $.post(servidor + '/binga/conta-api/cadastrar.php', {
+            json: JSON.stringify(cadastrar)
+        })
+        .done(function(response) {
+            console.log(response)
+            return;
+            var obj = JSON.parse(response);
+            if (obj.ok) {
+
+            }
+        })
+        .always(function(error) {
+            console.log(error);
+            _loader();
+        });
+}
+
+
+function _entra() {
+    _loader(1);
+    $.post(servidor + '/binga/conta-api/entrar.php', {
+            json: JSON.stringify({ email: $("#email-entrar").val(), palavra_passe: $("#pass-entrar").val() })
+        })
+        .done(function(response) {
+            var obj = JSON.parse(response);
+            if (obj.ok) {
+                console.log(obj.payload)
+            } else {
+                _corBorda(".erro", "red");
+                _erroInput(".erro-entrar", obj.payload, 1);
+                setInterval(() => {
+                    _erroInput(".erro-entrar", obj.payload, 0);
+                }, 5000);
+
+            }
+        })
+        .always(function(error) {
+            console.log(error);
+            _loader();
+        });
 }
