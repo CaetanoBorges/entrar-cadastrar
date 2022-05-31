@@ -163,8 +163,15 @@
                         <div class="div-centro">
                             <p class="esqueci-sms">Insira o seu e-mail e irá receber um código <br> que ajudará a renovar a palavra-passe.</p>
                         </div>
-                        <input type="email" class="input-entrar bckgrnd-input" placeholder="Email">
-                        <button class="input-entrar bckgrnd-button-c outline-none">Receber código</button>
+                        <input type="email" class="input-entrar bckgrnd-input" placeholder="Email" id="recuperar-numero-email">
+                        <button class="input-entrar bckgrnd-button-c outline-none" onclick="receberNumeroRecuperacao()" id="botao-receber-codigo">Receber código</button>
+                        <div class="div-centro">
+                            <div class="codigo-renova-erro">
+                                <div class="erro">
+                                    <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
+                                </div>   
+                            </div>   
+                        </div>
                     </div>
                     <div id="tenho-codigo">
                         <img src="voltar.png" class="voltar" onclick="history.back()">
@@ -172,9 +179,32 @@
                         <div class="div-centro">
                             <p class="esqueci-sms">Insira o e-mail e código que recebeu no e-mail<br>Para renovar a palavra-passe.</p>
                         </div>
-                        <input type="email" class="input-entrar bckgrnd-input" placeholder="Email">
-                        <input type="text" class="input-entrar bckgrnd-input" placeholder="Código recebido">
-                        <button class="input-entrar bckgrnd-button-e outline-none">Renovar Password</button>
+                        <input type="email" class="input-entrar bckgrnd-input" placeholder="Email" id="recuperar-passe-email">
+                        <input type="text" class="input-entrar bckgrnd-input" placeholder="Código recebido" id="recuperar-passe-codigo">
+                        <button class="input-entrar bckgrnd-button-e outline-none" onclick="verificaNumeroEmail()">Obter palavra passe</button>
+                        <div class="div-centro">
+                            <div class="passe-renova-erro">
+                                <div class="erro">
+                                    <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
+                                </div>   
+                            </div>   
+                        </div>
+                    </div>
+                    <div id="nova-palavra-passe">
+                        <img src="voltar.png" class="voltar" onclick="history.back()">
+                        <img src="logo.png" alt="">
+                        <div class="div-centro">
+                            <p class="esqueci-sms">Insira a sua palavra-passe nova.</p>
+                        </div>
+                        <input type="email" class="input-entrar bckgrnd-input" placeholder="Palavra passe nova" id="palavra-passe">
+                        <button class="input-entrar bckgrnd-button-e outline-none" onclick="novaPalavraPasse()">Renovar Password</button>
+                        <div class="div-centro">
+                            <div class="passe-nova-erro">
+                                <div class="erro">
+                                    <p class="sms-erro"></p><img src="erro.webp" class="icon-erro">
+                                </div>   
+                            </div>   
+                        </div>
                     </div>
                 </div>
                 <!-- -->
@@ -198,6 +228,94 @@ var cadastrar = {};
 const servidor = "<?php echo $servidor; ?>";
 const variavel = "<?php echo hash("sha512","codigo") ?>"
 
+function receberNumeroRecuperacao(){
+    _loader(1);
+    $.post(servidor + '/binga/conta-api/recuperar.php', {email: $("#recuperar-numero-email").val() 
+        })
+        .done(function(response) {
+            var obj = JSON.parse(response);
+            if (obj.ok) {
+                _corBorda(".erro", "#0000ff");
+                _erroInput(".codigo-renova-erro", obj.payload, 1);
+                $("#recuperar-numero-email").attr('disabled','disabled');
+                $("#botao-receber-codigo").attr('disabled','disabled');
+                setTimeout(() => {
+                    _erroInput(".codigo-renova-erro", obj.payload, 0);
+
+                    $("#recuperar-passe-email").val($("#recuperar-numero-email").val());
+                    
+                    _paraHash("#tenho-codigo")
+                }, 3000);
+            } else {
+                _corBorda(".erro", "red");
+                _erroInput(".codigo-renova-erro", obj.payload, 1);
+                setTimeout(() => {
+                    _erroInput(".codigo-renova-erro", obj.payload, 0);
+                }, 5000);
+
+            }
+        })
+        .always(function(error) {
+            console.log(error);
+            _loader();
+        });
+}
+
+
+function verificaNumeroEmail(){
+    _loader(1);
+    $.post(servidor + '/binga/conta-api/verificacodigoeemail.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val()
+        })
+        .done(function(response) {
+            var obj = JSON.parse(response);
+            if (obj.ok) {
+                _corBorda(".erro", "#0000ff");
+                _erroInput(".passe-renova-erro", obj.payload, 1);
+                $("#recuperar-passe-email").attr("disabled","disabled");
+                $("#recuperar-passe-codigo").attr("disabled","disabled");
+                _loader(1);
+                setTimeout(() => {
+                    _erroInput(".passe-renova-erro", obj.payload, 0);
+                    _paraHash("#nova-palavra-passe");
+                    _loader();
+                }, 3000);
+            } else {
+                _corBorda(".erro", "red");
+                _erroInput(".passe-renova-erro", obj.payload, 1);
+                setTimeout(() => {
+                    _erroInput(".passe-renova-erro", obj.payload, 0);
+                }, 5000);
+
+            }
+        })
+        .always(function(error) {
+            console.log(error);
+            _loader();
+        });
+    
+}
+
+function novaPalavraPasse(){
+    _loader(1);
+    $.post(servidor + '/binga/conta-api/novapasse.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val(), palavra_passe:  $("#palavra-passe").val()
+        })
+        .done(function(response) {
+            var obj = JSON.parse(response);
+            if (obj.ok) {
+                location.href = "https://conta.binga.ao";
+            } else {
+                _erroInput(".passe-nova-erro", obj.payload, 1);
+                setTimeout(() => {
+                    _erroInput(".passe-renova-erro", obj.payload, 0);
+                }, 3000);
+            }
+        })
+        .always(function(error) {
+            console.log(error);
+            _loader();
+        });
+    
+}
 </script>
 <script src="preenchimentoFormInscrever.js"></script>
 

@@ -1,7 +1,13 @@
+@font-face {
+    font-family: FontGeral;
+    src: url('font/Montserrat-Regular.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth
+    scroll-behavior: smooth;
+    font-family: FontGeral;
 }
 
 .corpo {
@@ -109,6 +115,10 @@
 }
 
 #tenho-codigo {
+    display: none;
+}
+
+#nova-palavra-passe {
     display: none;
 }
 

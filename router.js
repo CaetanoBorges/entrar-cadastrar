@@ -9,11 +9,13 @@ window.addEventListener("hashchange", function(e) {
     } else if (location.hash == "#inscrever") {
         routerPrincipal(["none", "flex"])
     } else if (location.hash == "#esqueci-pass") {
-        routerEntrar(["none", "block", "none", "none"])
+        routerEntrar(["none", "block", "none", "none", "none"])
     } else if (location.hash == "#obter-codigo") {
-        routerEntrar(["none", "none", "block", "none"])
+        routerEntrar(["none", "none", "block", "none", "none"])
     } else if (location.hash == "#tenho-codigo") {
-        routerEntrar(["none", "none", "none", "block"])
+        routerEntrar(["none", "none", "none", "block", "none"])
+    } else if (location.hash == "#nova-palavra-passe") {
+        routerEntrar(["none", "none", "none", "none", "block"])
     } else if (location.hash == "#cadastrar-nascimento") {
         routerCadastrar(["none", "block", "none", "none", "none", "none"])
     } else if (location.hash == "#cadastrar-email") {
@@ -41,6 +43,7 @@ function routerPrincipal(a) {
         _("#esqueci-pass").style.display = a[1];
         _("#obter-codigo").style.display = a[1];
         _("#tenho-codigo").style.display = a[1];
+        _("#nova-palavra-passe").style.display = a[1];
         return
     }
 
@@ -56,6 +59,7 @@ function routerPrincipal(a) {
         _("#cadastrar-password").style.display = a[0];
         _("#cadastrar-telefone").style.display = a[0];
         _("#cadastrar-termos").style.display = a[0];
+        _("#nova-palavra-passe").style.display = a[0];
         return
     }
 
@@ -66,6 +70,7 @@ function routerEntrar(a) {
     _("#esqueci-pass").style.display = a[1];
     _("#obter-codigo").style.display = a[2];
     _("#tenho-codigo").style.display = a[3];
+    _("#nova-palavra-passe").style.display = a[4];
 }
 // FUNCAO ROUTER CADASTRAR
 function routerCadastrar(a) {
