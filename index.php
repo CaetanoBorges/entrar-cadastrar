@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cadastro</title>
+    <title>Entrar - Cadastrar</title>
     <link rel="stylesheet" href="entrar.css">
+    <link rel="shortcut icon" href="ico.png" type="image/x-icon">
 </head>
 <style>
 
@@ -14,11 +15,11 @@
     <div class="corpo">
         <div class="navegacao">
             <ul>
-                <li onclick='_paraHash("#entrar")'>ENTRAR</li>
-                <li onclick='_paraHash("#inscrever")'>INSCREVER-SE</li>
+                <li onclick='_paraHash("#entrar")' class="menu-class-entrar">ENTRAR</li>
+                <li onclick='_paraHash("#inscrever")' class="menu-class-cadastrar">INSCREVER-SE</li>
             </ul>
         </div>
-        <div style="width:70%;display:block;margin:10vh auto;height:50%;position:relative">
+        <div id="todocorpo">
             <style>
                 .load{position: absolute; top: 1px; left:1px; width:100%; height: 100%;background: #fff;display: none;}
                 .load img {width: 30%; position: absolute; top: 40%; left:35%;}
@@ -49,7 +50,7 @@
                         <img src="logo.png">
                         <h2>Informações básicas</h2>
                         <div class="div-centro">
-                            <p>Introduzir a sua data<br>de nascimento e oseu género</p>
+                            <p>Introduzir a sua data de nascimento e o seu género</p><br>
                             <input type="number" placeholder="Dia" class="dia-mes" id="iDia">
                             <select name="" class="mes outline-none" id="iMes">
                                 <option value="0">Mês</option>
@@ -85,6 +86,7 @@
                         <img src="logo.png">
                         <h2>Deve adicionar<br>o seu email à conta!</h2>
                         <input type="email" placeholder="Email" class="input-entrar bckgrnd-input" id="iEmail">
+                        <br>
                         <div class="div-centro">
                             <p>Essa ação não deixa o teu email público. Servirá para fins de autenticação e renovação da palavra-passe caso se esqueça.
                             </p>
@@ -100,9 +102,9 @@
                         <img src="logo.png">
                         <h2>Criar uma<br>palavra-passe forte</h2>
                         <div class="div-centro">
-                            <p>Crie uma plavra passe forte com uma mistura de letras, números e símbolos</p>
+                            <p>Crie uma plavra passe forte com uma mistura de letras, números e símbolos.</p>
                         </div>
-                        
+                        <br>
                         <input type="password" placeholder="Palavra-passe" class="input-entrar bckgrnd-input" id="iPass">
                         <div class="div-centro">
                             <div class="erro">
@@ -115,6 +117,7 @@
                         <img src="logo.png">
                         <h2>Pretende adicionar<br>o número de telefone à conta?</h2>
                         <input type="number" placeholder="Número de telefone" class="input-entrar bckgrnd-input" id="iTelefone">
+                        <br>
                         <div class="div-centro">
                             <p>Essa ação não torna o teu número público. E não é obrigatória.</p>
                         </div>
@@ -147,7 +150,7 @@
                             </div>
                         </div>
                         <div class="div-centro">
-                            <p class="esqueci-pass">Esqueci a palavra-passe!<br> <span onclick='_paraHash("#esqueci-pass")'>Renovar</span></p>
+                            <p class="esqueci-pass">Esqueci a palavra-passe!<br> <span onclick='_paraHash("#esqueci-pass")' style="color:#ff008f">Renovar</span></p>
                         </div>
                     </div>
                     <div id="esqueci-pass">
@@ -163,6 +166,7 @@
                         <div class="div-centro">
                             <p class="esqueci-sms">Insira o seu e-mail e irá receber um código <br> que ajudará a renovar a palavra-passe.</p>
                         </div>
+                        <br>
                         <input type="email" class="input-entrar bckgrnd-input" placeholder="Email" id="recuperar-numero-email">
                         <button class="input-entrar bckgrnd-button-c outline-none" onclick="receberNumeroRecuperacao()" id="botao-receber-codigo">Receber código</button>
                         <div class="div-centro">
@@ -179,6 +183,7 @@
                         <div class="div-centro">
                             <p class="esqueci-sms">Insira o e-mail e código que recebeu no e-mail<br>Para renovar a palavra-passe.</p>
                         </div>
+                        <br>
                         <input type="email" class="input-entrar bckgrnd-input" placeholder="Email" id="recuperar-passe-email">
                         <input type="text" class="input-entrar bckgrnd-input" placeholder="Código recebido" id="recuperar-passe-codigo">
                         <button class="input-entrar bckgrnd-button-e outline-none" onclick="verificaNumeroEmail()">Obter palavra passe</button>
@@ -212,9 +217,9 @@
         </div>  
     </div>
 </body>
+<script src="jquery.js" ></script>
 <script src="funcoesGenericas.js"></script>
 <script src="router.js"></script>
-<script src="jquery.js" ></script>
 <?php
 $servidor = "http://127.0.0.1";
 $urlDaRequisicao = $_SERVER['REQUEST_URI'];

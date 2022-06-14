@@ -44,6 +44,15 @@
 
 /* TELAS DE LOGIN E CADASTRO */
 
+#todocorpo {
+    width: 70%;
+    display: block;
+    margin: 10vh auto;
+    height: fit-content;
+    position: relative;
+    padding-bottom: 10vh;
+}
+
 .duasDivs {
     width: 100%;
     height: 100%;
@@ -55,7 +64,6 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    border: 1px solid #eaeaea
 }
 
 #inscrever {
@@ -63,7 +71,6 @@
     height: 100%;
     justify-content: center;
     display: none;
-    border: 1px solid #eaeaea
 }
 
 
@@ -86,8 +93,8 @@
     border-radius: 0;
     outline: none;
     box-shadow: none;
-    border: 1px inset blue;
-    color: blue;
+    border: 1px inset #ff008f;
+    color: #ff008f;
 }
 
 .bckgrnd-input {
@@ -99,7 +106,7 @@
 }
 
 .bckgrnd-button-c {
-    background: blue;
+    background: #ff008f;
 }
 
 .esqueci-pass {
@@ -207,8 +214,8 @@ button:focus {
 
 .dia-mes:focus {
     outline: none;
-    border: 1px inset blue;
-    color: blue;
+    border: 1px inset #ff008f;
+    color: #ff008f;
 }
 
 .outline-none:focus {
@@ -233,8 +240,8 @@ button:focus {
 
 .genero:focus {
     outline: none;
-    border: 1px inset blue;
-    color: blue;
+    border: 1px inset #ff008f;
+    color: #ff008f;
 }
 
 .mes {
@@ -247,8 +254,8 @@ button:focus {
 
 .mes:focus {
     outline: none;
-    border: 1px inset blue;
-    color: blue;
+    border: 1px inset #ff008f;
+    color: #ff008f;
 }
 
 #inscrever img,
@@ -292,4 +299,13 @@ button:focus {
     width: fit-content;
     padding: 2px;
     margin: auto auto;
+}
+
+@media screen and (max-width: 500px) {
+    .corpo {
+        width: 100%;
+    }
+    #todocorpo {
+        width: 90%;
+    }
 }

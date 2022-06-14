@@ -2,13 +2,38 @@ function _paraHash(hash) {
     location.hash = hash;
 }
 
+function estilizaBotaoEntrar(como = false) {
+    if (como) {
+        $(".menu-class-entrar").css({ fontWeight: "bold" });
+        return;
+    }
+    $(".menu-class-entrar").css({ fontWeight: "normal" });
+
+}
+
+function estilizaBotaoInscreverse(como = false) {
+    if (como) {
+        $(".menu-class-cadastrar").css({ fontWeight: "bold" });
+        return;
+    }
+    $(".menu-class-cadastrar").css({ fontWeight: "normal" });
+
+}
+
+
 window.addEventListener("hashchange", function(e) {
 
     if (location.hash == "#entrar") {
+        estilizaBotaoEntrar(true);
+        estilizaBotaoInscreverse();
         routerPrincipal(["flex", "none"])
     } else if (location.hash == "#inscrever") {
+        estilizaBotaoInscreverse(true);
+        estilizaBotaoEntrar();
         routerPrincipal(["none", "flex"])
     } else if (location.hash == "#esqueci-pass") {
+        estilizaBotaoInscreverse();
+        estilizaBotaoEntrar();
         routerEntrar(["none", "block", "none", "none", "none"])
     } else if (location.hash == "#obter-codigo") {
         routerEntrar(["none", "none", "block", "none", "none"])
@@ -31,7 +56,7 @@ window.addEventListener("hashchange", function(e) {
 })
 
 _paraHash("#entrar");
-
+estilizaBotaoEntrar(true);
 // FUNCAO ROUTER PRINCIPAL
 function routerPrincipal(a) {
     if (a[0] == "flex") {
