@@ -89,12 +89,36 @@ function _iNascimentoJa() {
 
 function _iEmailJa() {
     var email = _("#iEmail").value;
+    if (ValidarEmail(email)) {
+
+    } else {
+        _erroInput("#cadastrar-email", "Invalido!!! insira um email válido!!!", true);
+        _corBorda("#iEmail", "red");
+        return;
+    }
 
     if (_isset(email)) {
-        _corBorda("#iEmail", "blue");
-        _erroInput("#cadastrar-email");
-        _paraHash("#cadastrar-password");
-        cadastrar.email = email;
+        _loader(1);
+        $.post(servidor + '/binga/conta-api/existeEmail.php', {
+                json: JSON.stringify({ email: email })
+            })
+            .done(function(response) {
+                var obj = JSON.parse(response);
+                if (obj.ok) {
+                    _erroInput("#cadastrar-email", "já existe um usuário com esse email", true);
+                    _corBorda("#iEmail", "red");
+                    return;
+                }
+                _corBorda("#iEmail", "blue");
+                _erroInput("#cadastrar-email");
+                _paraHash("#cadastrar-password");
+                cadastrar.email = email;
+            })
+            .always(function(error) {
+                console.log(error);
+                _loader();
+            });
+
     } else {
         _erroInput("#cadastrar-email", "O email é necessário! Insira corretamente", true);
         _corBorda("#iEmail", "red");

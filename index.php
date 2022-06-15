@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar - Cadastrar</title>
+    <link rel="stylesheet" href="passtrength.css">
     <link rel="stylesheet" href="entrar.css">
     <link rel="shortcut icon" href="ico.png" type="image/x-icon">
 </head>
@@ -201,7 +202,7 @@
                         <div class="div-centro">
                             <p class="esqueci-sms">Insira a sua palavra-passe nova.</p>
                         </div>
-                        <input type="email" class="input-entrar bckgrnd-input" placeholder="Palavra passe nova" id="palavra-passe">
+                        <input type="password" class="input-entrar bckgrnd-input" placeholder="Palavra passe nova" id="palavra-passe">
                         <button class="input-entrar bckgrnd-button-e outline-none" onclick="novaPalavraPasse()">Renovar Password</button>
                         <div class="div-centro">
                             <div class="passe-nova-erro">
@@ -218,6 +219,7 @@
     </div>
 </body>
 <script src="jquery.js" ></script>
+<script src="passtrength.js"></script>
 <script src="funcoesGenericas.js"></script>
 <script src="router.js"></script>
 <?php
@@ -232,6 +234,17 @@ $protocoloHttp = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "http
 var cadastrar = {};
 const servidor = "<?php echo $servidor; ?>";
 const variavel = "<?php echo hash("sha512","codigo") ?>"
+
+$('#iPass, #palavra-passe').passtrength({
+  minChars: 6,
+  passwordToggle: true,
+  tooltip: true,
+  textWeak: "Fraca",
+  textMedium: "Media",
+  textStrong: "Forte",
+  textVeryStrong: "Muito Forte",
+  eyeImg : "eye.svg"
+});
 
 function receberNumeroRecuperacao(){
     _loader(1);

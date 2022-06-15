@@ -9,6 +9,15 @@ function _isset(value) {
     return false;
 }
 
+function ValidarEmail(inputText) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (inputText.match(mailformat)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function _erroInput(el, sms = false, opt = false) {
     _(el + " .sms-erro").textContent = " ";
     _(el + " .sms-erro").textContent = sms;
