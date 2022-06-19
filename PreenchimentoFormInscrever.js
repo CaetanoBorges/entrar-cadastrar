@@ -177,6 +177,7 @@ function _entra() {
             var obj = JSON.parse(response);
             if (obj.ok) {
                 console.log(obj.payload)
+                location.href = "http://127.0.0.1/binga/conta-ui/inicio.php?ftpadbc=" + obj.payload; //"https://conta.binga.ao";
             } else {
                 _corBorda(".erro", "red");
                 _erroInput(".erro-entrar", obj.payload, 1);

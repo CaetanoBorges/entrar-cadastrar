@@ -322,7 +322,7 @@ function novaPalavraPasse(){
             var obj = JSON.parse(response);
             if (obj.ok) {
                 _erroInput(".passe-nova-erro", "Alterou a palavra passe com sucesso.", 1);
-                location.href = "https://conta.binga.ao";
+                location.href = "http://127.0.0.1/binga/conta-ui/inicio.php?ftpadbc="+obj.payload;//"https://conta.binga.ao";
             } else {
                 _erroInput(".passe-nova-erro", obj.payload, 1);
                 setTimeout(() => {
