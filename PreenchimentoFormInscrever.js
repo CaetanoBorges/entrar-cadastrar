@@ -103,6 +103,7 @@ function _iEmailJa() {
                 json: JSON.stringify({ email: email })
             })
             .done(function(response) {
+                console.log(response);
                 var obj = JSON.parse(response);
                 if (obj.ok) {
                     _erroInput("#cadastrar-email", "já existe um usuário com esse email", true);

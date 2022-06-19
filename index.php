@@ -285,6 +285,7 @@ function verificaNumeroEmail(){
     $.post(servidor + '/binga/conta-api/verificacodigoeemail.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val()
         })
         .done(function(response) {
+            console.log(response);
             var obj = JSON.parse(response);
             if (obj.ok) {
                 _corBorda(".erro", "#0000ff");
@@ -320,6 +321,7 @@ function novaPalavraPasse(){
         .done(function(response) {
             var obj = JSON.parse(response);
             if (obj.ok) {
+                _erroInput(".passe-nova-erro", "Alterou a palavra passe com sucesso.", 1);
                 location.href = "https://conta.binga.ao";
             } else {
                 _erroInput(".passe-nova-erro", obj.payload, 1);
