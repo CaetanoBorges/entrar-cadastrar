@@ -99,7 +99,7 @@ function _iEmailJa() {
 
     if (_isset(email)) {
         _loader(1);
-        $.post(servidor + '/binga/conta-api/existeEmail.php', {
+        $.post(servidor + '/existeEmail.php', {
                 json: JSON.stringify({ email: email })
             })
             .done(function(response) {
@@ -150,7 +150,7 @@ function _iTelefoneJa() {
 function _iTermosJa() {
     _loader(1);
 
-    $.post(servidor + '/binga/conta-api/cadastrar.php', {
+    $.post(servidor + '/cadastrar.php', {
             json: JSON.stringify(cadastrar)
         })
         .done(function(response) {
@@ -170,14 +170,14 @@ function _iTermosJa() {
 
 function _entra() {
     _loader(1);
-    $.post(servidor + '/binga/conta-api/entrar.php', {
+    $.post(servidor + '/entrar.php', {
             json: JSON.stringify({ email: $("#email-entrar").val(), palavra_passe: $("#pass-entrar").val() })
         })
         .done(function(response) {
             var obj = JSON.parse(response);
             if (obj.ok) {
                 console.log(obj.payload)
-                location.href = "http://127.0.0.1/binga/conta-ui/inicio.php?ftpadbc=" + obj.payload; //"https://conta.binga.ao";
+                location.href = "http://conta.binga.ao/inicio.php?ftpadbc=" + obj.payload; //"https://conta.binga.ao";
             } else {
                 _corBorda(".erro", "red");
                 _erroInput(".erro-entrar", obj.payload, 1);

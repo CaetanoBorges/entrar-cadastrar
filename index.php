@@ -223,7 +223,7 @@
 <script src="funcoesGenericas.js"></script>
 <script src="router.js"></script>
 <?php
-$servidor = "http://127.0.0.1";
+$servidor = "http://apiconta.binga.ao";
 $urlDaRequisicao = $_SERVER['REQUEST_URI'];
 $protocoloHttp = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://";
 //echo $urlDaRequisicao;
@@ -251,6 +251,7 @@ function receberNumeroRecuperacao(){
     $.post(servidor + '/binga/conta-api/recuperar.php', {email: $("#recuperar-numero-email").val() 
         })
         .done(function(response) {
+            console.log(response);
             var obj = JSON.parse(response);
             if (obj.ok) {
                 _corBorda(".erro", "#0000ff");
