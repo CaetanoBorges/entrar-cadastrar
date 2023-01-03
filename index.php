@@ -249,7 +249,7 @@ $('#iPass, #palavra-passe').passtrength({
 
 function receberNumeroRecuperacao(){
     _loader(1);
-    $.post(servidor + '/binga/conta-api/recuperar.php', {email: $("#recuperar-numero-email").val() 
+    $.post(servidor + '/recuperar.php', {email: $("#recuperar-numero-email").val() 
         })
         .done(function(response) {
             console.log(response);
@@ -284,7 +284,7 @@ function receberNumeroRecuperacao(){
 
 function verificaNumeroEmail(){
     _loader(1);
-    $.post(servidor + '/binga/conta-api/verificacodigoeemail.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val()
+    $.post(servidor + '/verificacodigoeemail.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val()
         })
         .done(function(response) {
             console.log(response);
@@ -318,7 +318,7 @@ function verificaNumeroEmail(){
 
 function novaPalavraPasse(){
     _loader(1);
-    $.post(servidor + '/binga/conta-api/novapasse.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val(), palavra_passe:  $("#palavra-passe").val()
+    $.post(servidor + '/novapasse.php', {email: $("#recuperar-passe-email").val(), numero:  $("#recuperar-passe-codigo").val(), palavra_passe:  $("#palavra-passe").val()
         })
         .done(function(response) {
             var obj = JSON.parse(response);
