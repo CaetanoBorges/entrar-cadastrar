@@ -339,6 +339,6 @@ function novaPalavraPasse(){
     
 }
 </script>
-<script src="http://cdn.binga.ao/entrar/preenchimentoFormInscrever.js"></script>
+<script src="http://cdn.binga.ao/entrar/PreenchimentoFormInscrever.js"></script>
 
 </html>
